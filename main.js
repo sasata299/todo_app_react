@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 class TodoApp extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      todos: [{ item: "sample", status: 0 }]
+    };
   }
 
   render() {
@@ -11,7 +14,7 @@ class TodoApp extends React.Component {
       <div className="todoApp">
         Hello, I am sasata299.
         <TodoCreator />
-        <TodoList />
+        <TodoList todos={this.state.todos} />
       </div>
     );
   }
@@ -28,9 +31,15 @@ class TodoCreator extends React.Component {
 
 class TodoList extends React.Component {
   render() {
+    var todos = this.props.todos.map((todo, i) => {
+      if (todo.status == 0) { return <li>{todo.item}</li> }
+      else { return <li><s>{todo.item}</s></li> }
+    });
+
     return (
-      <div className="todoList">
-      </div>
+      <ul className="todoList">
+        {todos}
+      </ul>
     );
   }
 }
