@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 class TodoApp extends React.Component {
   constructor(props) {
@@ -7,11 +7,11 @@ class TodoApp extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div className="todoApp">
         Hello, I am sasata299.
-        <TodoCreator/>
-        <TodoList/>
+        <TodoCreator />
+        <TodoList />
       </div>
     );
   }
@@ -19,7 +19,7 @@ class TodoApp extends React.Component {
 
 class TodoCreator extends React.Component {
   render() {
-    return(
+    return (
       <div className="todoCreator">
       </div>
     );
@@ -28,7 +28,7 @@ class TodoCreator extends React.Component {
 
 class TodoList extends React.Component {
   render() {
-    return(
+    return (
       <div className="todoList">
       </div>
     );
@@ -36,6 +36,6 @@ class TodoList extends React.Component {
 }
 
 ReactDOM.render(
-  <TodoApp/>,
+  <TodoApp />,
   document.getElementById('myApp')
 );

@@ -8,6 +8,10 @@
   },
   "author": "sasata299",
   "license": "MIT",
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "babelify": "^6.4.0",
