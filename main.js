@@ -5,13 +5,21 @@ class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [{ item: "sample", status: 0 }]
+      todos: [{ item: "sample", status: 0 }],
+      value: ''
     };
   }
 
   onAdd(newTodo) {
     this.setState({
-      todos: this.state.todos.concat({ item: newTodo, status: 0 })
+      todos: this.state.todos.concat({ item: newTodo, status: 0 }),
+      value: ''
+    });
+  }
+
+  onChange(value) {
+    this.setState({
+      value: value
     });
   }
 
@@ -19,7 +27,7 @@ class TodoApp extends React.Component {
     return (
       <div className="todoApp">
         Hello, I am sasata299.
-        <TodoCreator onAdd={this.onAdd.bind(this)} />
+        <TodoCreator value={this.state.value} onAdd={this.onAdd.bind(this)} onChange={this.onChange.bind(this)} />
         <TodoList todos={this.state.todos} />
       </div>
     );
@@ -27,15 +35,21 @@ class TodoApp extends React.Component {
 }
 
 class TodoCreator extends React.Component {
+  //const { value, onAdd } = this.props;
+
   _onAdd() {
     const newTodo = this.refs.inputText.value;
     this.props.onAdd(newTodo);
   }
 
+  _onChange(e) {
+    this.props.onChange(e.target.value);
+  }
+
   render() {
     return (
       <div className="todoCreator">
-        <input type="text" ref="inputText" placeholder="Input your new todo" />
+        <input type="text" value={this.props.value} ref="inputText" placeholder="Input your new todo" onChange={this._onChange.bind(this)} />
         <button onClick={this._onAdd.bind(this)}>Add</button>
       </div>
     );
