@@ -23,12 +23,20 @@ class TodoApp extends React.Component {
     });
   }
 
+  onDelete(i) {
+    const targetTodo = this.state.todos[i];
+    targetTodo.status = 1
+    this.setState({
+      todos: this.state.todos
+    });
+  }
+
   render() {
     return (
       <div className="todoApp">
         Hello, I am sasata299.
         <TodoCreator value={this.state.value} onAdd={this.onAdd.bind(this)} onChange={this.onChange.bind(this)} />
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} onDelete={this.onDelete.bind(this)} />
       </div>
     );
   }
@@ -57,9 +65,20 @@ class TodoCreator extends React.Component {
 }
 
 class TodoList extends React.Component {
+  _onDelete(i) {
+    this.props.onDelete(i);
+  }
+
   render() {
     var todos = this.props.todos.map((todo, i) => {
-      if (todo.status == 0) { return <li key={i}>{todo.item}</li> }
+      if (todo.status == 0) {
+        return (
+          <li key={i}>
+            <input type="checkbox" onClick={this._onDelete.bind(this, i)} />
+            {todo.item}
+          </li>
+        )
+      }
       else { return <li key={i}><s>{todo.item}</s></li> }
     });
 
